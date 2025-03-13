@@ -1,0 +1,131 @@
+Text & Content
+Text Tools
+Case converter, character counter and more
+
+Word Counter
+Count words, characters, and paragraphs
+
+Lorem Generator
+Generate Lorem Ipsum placeholder text
+
+Markdown Preview
+Live preview of Markdown text
+
+Text Diff
+Compare and find differences in text
+
+Quote Generator
+Generate random quotes and citations
+
+Development Tools
+JSON Tools
+Format, validate and convert JSON data
+
+HTML Formatter
+Format and prettify HTML code
+
+Code Beautifier
+Format and beautify code in various languages
+
+Regex Tester
+Test and validate regular expressions
+
+Git Command Helper
+Common git commands and usage
+
+Code Snippet Manager
+Store and organize code snippets
+
+Data & Conversion
+Base64 Tools
+Encode and decode Base64 strings
+
+CSV to JSON
+Convert CSV files to JSON format
+
+URL Tools
+Encode, decode and parse URLs
+
+Hash Generator
+Generate MD5, SHA-1, SHA-256 hashes
+
+Data Format Converter
+Convert between XML, YAML, and more
+
+Number Base Converter
+Convert between decimal, binary, hex
+
+Visual & Media
+Color Picker
+Pick, convert and generate color palettes
+
+Image Tools
+Base64 encode/decode images
+
+QR Code Generator
+Create QR codes for text and URLs
+
+SVG Editor
+Create and edit SVG graphics
+
+CSS Gradient Generator
+Create beautiful CSS gradients
+
+Math & Statistics
+Calculator
+Basic and scientific calculator functions
+
+Unit Converter
+Convert between different units of measurement
+
+Random Generator
+Generate random numbers and strings
+
+Statistical Calculator
+Calculate mean, median, mode, and more
+
+Probability Calculator
+Calculate odds and probabilities
+
+Percentage Calculator
+Calculate percentages and ratios
+
+Time & Date
+Time Converter
+Convert between timezones and formats
+
+Date Calculator
+Calculate time between dates
+
+Countdown Timer
+Create countdown timers
+
+Security & Encryption
+Password Generator
+Generate secure random passwords
+
+Encryption Tools
+Encrypt and decrypt text
+
+JWT Debugger
+Debug and verify JWT tokens
+
+Network & Web
+HTTP Status Codes
+Reference for HTTP status codes
+
+Network Tools
+Ping, DNS lookup, and more
+
+API Tester
+Test API endpoints
+
+Science & Engineering
+Scientific Calculator
+Advanced scientific calculations
+
+Formula Reference
+Common scientific formulas
+
+Unit Conversions
+Scientific unit conversions
