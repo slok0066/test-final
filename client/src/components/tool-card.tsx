@@ -1,60 +1,61 @@
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Tool } from "@/lib/tool-categories";
+import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
-import { Badge } from "./ui/badge";
-import { LucideIcon } from "lucide-react";
+import { Tool } from "@/lib/tool-categories";
+import { cn } from "@/lib/utils";
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
-
-// Extend the Tool type to include isNew property
-interface ToolWithNew extends Tool {
-  isNew?: boolean;
+interface ToolCardProps {
+  tool: Tool;
+  index?: number;
+  className?: string;
 }
 
-type ToolCardProps = 
-  | { tool: ToolWithNew; index?: number }
-  | { name: string; description: string; path: string; icon?: LucideIcon; isNew?: boolean };
-
-export function ToolCard(props: ToolCardProps) {
-  // Determine if we're using the tool object or individual props
-  const isTool = 'tool' in props;
-  
-  // Extract values from either the tool object or individual props
-  const name = isTool ? props.tool.name : props.name;
-  const description = isTool ? props.tool.description : props.description;
-  const path = isTool ? props.tool.path : props.path;
-  const Icon = isTool ? props.tool.icon : props.icon;
-  const isNew = isTool ? props.tool.isNew : props.isNew;
-
+export function ToolCard({ tool, index = 0, className }: ToolCardProps) {
   return (
-    <Link href={path}>
-      <motion.div
-        variants={item}
-        className="cursor-pointer group h-full"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <Card className="h-full transition-all duration-200 hover:shadow-lg dark:hover:shadow-primary/5 hover:border-primary/50 group-hover:bg-accent/50">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                {Icon && <Icon className="h-5 w-5 text-primary" />}
-                <CardTitle className="text-xl">{name}</CardTitle>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      whileHover={{ y: -5 }}
+      className={cn("h-full", className)}
+    >
+      <Link href={tool.path}>
+        <Card className="p-4 md:p-6 h-full hover:shadow-lg transition-all cursor-pointer group border-border hover:border-primary/50">
+          <div className="flex flex-col h-full">
+            <div className="flex items-start gap-3 mb-3">
+              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <tool.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
               </div>
-              {isNew && (
-                <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20">
-                  New
-                </Badge>
-              )}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base md:text-lg font-semibold group-hover:text-primary transition-colors truncate">
+                  {tool.name}
+                </h3>
+                <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 mt-1">
+                  {tool.description}
+                </p>
+              </div>
             </div>
-            <CardDescription className="text-sm mt-2">{description}</CardDescription>
-          </CardHeader>
+            
+            {tool.tags && tool.tags.length > 0 && (
+              <div className="mt-auto pt-2 flex flex-wrap gap-1">
+                {tool.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {tool.tags.length > 3 && (
+                  <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
+                    +{tool.tags.length - 3}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
         </Card>
-      </motion.div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }

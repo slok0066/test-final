@@ -212,12 +212,6 @@ export const categories: Category[] = [
         icon: Activity,
       },
       {
-        name: "Meal Planner",
-        description: "Plan your weekly meals",
-        path: "/health/meal-planner",
-        icon: Utensils,
-      },
-      {
         name: "Habit Tracker",
         description: "Track your daily habits",
         path: "/health/habit-tracker",
@@ -232,7 +226,7 @@ export const categories: Category[] = [
       {
         name: "Eye Strain Guard",
         description: "Monitor screen brightness and suggest breaks using ambient light",
-        path: "/health/eye-guard",
+        path: "/health/eye-strain-guard",
         icon: Eye,
       },
       {

@@ -123,6 +123,7 @@ import HabitTracker from "@/pages/health/habit-tracker";
 import ErgonomicTimer from "@/pages/health/ergonomic-timer";
 import EyeStrainGuard from "@/pages/health/eye-strain-guard";
 import FocusBreath from "@/pages/health/focus-breath";
+import HealthToolsPage from "@/pages/health-tools";
 
 // Finance Tools
 import ExpenseTracker from "@/pages/finance/expense-tracker";
@@ -363,6 +364,19 @@ function Router() {
         <Route path="/fun/yes-no-spinner">
           {(params) => <YesNoSpinner {...params} />}
         </Route>
+
+        {/* Health Tools routes */}
+        <Route path="/health/bmi-calculator" component={BmiCalculator} />
+        <Route path="/health/calorie-counter" component={CalorieCounter} />
+        <Route path="/health/water-tracker" component={WaterTracker} />
+        <Route path="/health/sleep-tracker" component={SleepTracker} />
+        <Route path="/health/meditation" component={MeditationTimer} />
+        <Route path="/health/exercise-tracker" component={ExerciseTracker} />
+        <Route path="/health/habit-tracker" component={HabitTracker} />
+        <Route path="/health/ergonomic-timer" component={ErgonomicTimer} />
+        <Route path="/health/eye-strain-guard" component={EyeStrainGuard} />
+        <Route path="/health/focus-breath" component={FocusBreath} />
+        <Route path="/health-tools" component={HealthToolsPage} />
 
         {/* Catch-all route for 404 */}
         <Route>

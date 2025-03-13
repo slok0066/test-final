@@ -1,6 +1,8 @@
 import { Instagram } from "lucide-react";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const footerLinks = [
   {
@@ -21,16 +23,37 @@ const footerLinks = [
 ];
 
 export function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
   return (
     <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-          <div className="col-span-2 md:col-span-1">
+      <div className="container px-4 py-6 md:py-8">
+        <div className={cn(
+          "grid gap-6 md:gap-8",
+          isMobile ? "grid-cols-1" : "grid-cols-2 md:grid-cols-3"
+        )}>
+          <div className="col-span-1 md:col-span-1">
             <div className="flex items-center space-x-2">
               <img src="/logo.svg" alt="Logo" className="h-6 w-6" />
               <span className="font-bold">WebToolKit</span>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
+            <p className="mt-3 text-sm text-muted-foreground">
               A collection of tools to help developers build better software, faster.
             </p>
             <div className="mt-4">
@@ -47,9 +70,9 @@ export function Footer() {
           </div>
 
           {footerLinks.map((section) => (
-            <div key={section.title}>
+            <div key={section.title} className={cn(isMobile && "mt-2")}>
               <h3 className="font-semibold">{section.title}</h3>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-3 space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <a
@@ -65,7 +88,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-6 md:mt-8 text-center text-xs md:text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} WebToolKit by Shlok. All rights reserved.</p>
         </div>
       </div>

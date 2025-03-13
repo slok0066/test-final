@@ -11,13 +11,30 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearch } from "@/lib/search-context";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const { searchTerm, performSearch } = useSearch();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -43,6 +60,19 @@ export function Header() {
             <img src="/logo.svg" alt="Logo" className="h-6 w-6" />
             <span className="font-bold">WebToolKit</span>
           </Link>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex ml-6 space-x-4">
+            <Link href="/tools">
+              <Button variant="ghost" size="sm">All Tools</Button>
+            </Link>
+            <Link href="/health-tools">
+              <Button variant="ghost" size="sm">Health Tools</Button>
+            </Link>
+            <Link href="/docs">
+              <Button variant="ghost" size="sm">Docs</Button>
+            </Link>
+          </nav>
         </div>
 
         {/* Search - Desktop */}
@@ -103,7 +133,7 @@ export function Header() {
           exit={{ opacity: 0, y: -10 }}
           className="md:hidden border-t"
         >
-          <div className="container py-4">
+          <div className="container py-4 space-y-4">
             <Input
               type="search"
               placeholder="Search tools..."
@@ -112,6 +142,34 @@ export function Header() {
               onChange={handleSearchChange}
               onKeyDown={handleSearchKeyDown}
             />
+            
+            <div className="grid grid-cols-2 gap-2">
+              <Link href="/tools">
+                <Button variant="outline" className="w-full justify-start">
+                  <span>All Tools</span>
+                </Button>
+              </Link>
+              <Link href="/docs">
+                <Button variant="outline" className="w-full justify-start">
+                  <span>Documentation</span>
+                </Button>
+              </Link>
+              <Link href="/changelog">
+                <Button variant="outline" className="w-full justify-start">
+                  <span>Changelog</span>
+                </Button>
+              </Link>
+              <Link href="/community">
+                <Button variant="outline" className="w-full justify-start">
+                  <span>Community</span>
+                </Button>
+              </Link>
+              <Link href="/health-tools">
+                <Button variant="outline" className="w-full justify-start">
+                  <span>Health Tools</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </motion.div>
       )}

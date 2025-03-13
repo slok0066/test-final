@@ -7,7 +7,7 @@ import { Tool } from "@/lib/tool-categories";
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { BackButton } from "./back-button";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AdSense from "./AdSense";
 
 // Header Component
@@ -239,6 +239,23 @@ interface ToolLayoutProps {
 export function ToolLayout({ title, description, children }: ToolLayoutProps) {
   const [location] = useLocation();
   const [isValidRoute] = useRoute(location);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   if (!isValidRoute) {
     return (
@@ -262,14 +279,14 @@ export function ToolLayout({ title, description, children }: ToolLayoutProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="container py-6 space-y-4"
+      className="container py-6 space-y-4 px-4 md:px-6"
     >
       <div className="space-y-2">
         <BackButton />
         <motion.h1 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-3xl font-bold tracking-tight"
+          className="text-2xl md:text-3xl font-bold tracking-tight"
         >
           {title}
         </motion.h1>
@@ -277,7 +294,7 @@ export function ToolLayout({ title, description, children }: ToolLayoutProps) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-muted-foreground"
+          className="text-sm md:text-base text-muted-foreground"
         >
           {description}
         </motion.p>
@@ -290,6 +307,7 @@ export function ToolLayout({ title, description, children }: ToolLayoutProps) {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
+        className="overflow-x-hidden"
       >
         {children}
       </motion.div>
