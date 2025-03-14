@@ -44,7 +44,7 @@ const EyeStrainGuard: React.FC<RouteComponentProps> = () => {
                   step={1}
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -59,10 +59,10 @@ const EyeStrainGuard: React.FC<RouteComponentProps> = () => {
                   max={100}
                   step={1}
                 />
-              </div>
-              
+          </div>
+
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <Eye className="h-4 w-4 mr-2" />
                     <span>Eye Strain Level</span>
@@ -72,9 +72,9 @@ const EyeStrainGuard: React.FC<RouteComponentProps> = () => {
                 <Progress value={strainLevel} className="h-2" />
               </div>
             </div>
-          </div>
-        </Card>
-        
+            </div>
+          </Card>
+
         <Card className="p-6">
           <h3 className="text-lg font-medium mb-4">Recommendations</h3>
           <div className="space-y-4">
@@ -85,7 +85,7 @@ const EyeStrainGuard: React.FC<RouteComponentProps> = () => {
                 <p className="text-sm text-muted-foreground">
                   Your screen is too bright relative to ambient light. Consider reducing brightness to 60%.
                 </p>
-              </div>
+            </div>
             </div>
             
             <div className="flex items-start space-x-3">
@@ -94,13 +94,13 @@ const EyeStrainGuard: React.FC<RouteComponentProps> = () => {
                 <h4 className="font-medium">Take a Break</h4>
                 <p className="text-sm text-muted-foreground">
                   You've been looking at the screen for a while. Consider taking a 5-minute break.
-                </p>
-              </div>
+            </p>
+          </div>
             </div>
           </div>
         </Card>
-      </div>
-    </div>
+          </div>
+        </div>
   );
 };
 
